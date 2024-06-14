@@ -1,0 +1,28 @@
+.catalogs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-height: 344px;
+  height: 100%;
+  gap: 16px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 0;
+    background: #7d8184;
+    width: 1px;
+    height: 344px;
+  }
+
+  .catalog {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #000;
+  }
+}

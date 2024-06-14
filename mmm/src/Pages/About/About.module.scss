@@ -1,0 +1,84 @@
+.story {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 76px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 525px;
+
+    .title {
+      font-family: 'Inter';
+      font-weight: 600;
+      font-size: 54px;
+      line-height: 119%;
+      letter-spacing: 0.06em;
+      color: #000;
+      margin-bottom: 40px;
+    }
+  }
+
+  .text {
+    width: 100%;
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 162%;
+    color: #000;
+
+    &:first-of-type {
+      margin-bottom: 24px;
+    }
+  }
+
+  .img {
+    width: 705px;
+    height: 610px;
+  }
+}
+
+.cash {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 0;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    width: 270px;
+    height: 230px;
+    background: #fff;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+      color: #fff;
+      background: #db4444;
+    }
+
+    .title {
+      font-family: 'Inter';
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 94%;
+      letter-spacing: 0.04em;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    .text {
+      font-family: 'Poppins';
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+    }
+  }
+}

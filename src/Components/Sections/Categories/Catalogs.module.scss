@@ -1,0 +1,32 @@
+.catalogs__box {
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+  gap: 30px;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    width: 170px;
+    height: 145px;
+    background: #fff;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+      background: #db4444;
+    }
+
+    .text {
+      font-family: 'Poppins';
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000;
+    }
+  }
+}
