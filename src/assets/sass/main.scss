@@ -159,7 +159,6 @@
   align-items: center;
   gap: 130px;
 
-  &__img {}
 }
 
 .register {
@@ -433,7 +432,7 @@
 }
 
 .cutom__input {
-  padding-bottom: 8px;
+  padding: 5px 7px 8px 7px;
   width: 100%;
   font-family: 'Poppins';
   font-weight: 400;

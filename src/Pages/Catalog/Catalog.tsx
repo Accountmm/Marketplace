@@ -1,16 +1,17 @@
 import { useParams } from 'react-router-dom'
 import MainLayout from '../../Layout/MainLayout'
 import style from './Catalog.module.scss'
-import getCatalog from '../../Services/getCatalog'
 import Loading from '../../Components/Loaders/Loading'
 import { IProduct } from '../../Types/ProductsType'
 import Card from '../../Components/UI/Card/Card'
 import CardLoader from '../../Components/Loaders/CardLoader'
 import Title from '../../Components/UI/Title/Title'
+import getSortProducts from '../../Services/getSortProducts'
 
 const Catalog = () => {
-  const { catalogname } = useParams()
-  const { data, isLoading, isFetching } = getCatalog({ catalog: catalogname || '' })
+  const { catalogid } = useParams()
+
+  const { data, isLoading, isFetching } = getSortProducts({ catalog: catalogid || 0 })
 
   if (isFetching || isLoading) return <Loading />
 
@@ -24,10 +25,10 @@ const Catalog = () => {
     <MainLayout>
       <section className='page'>
         <div className="container">
-          <Title title={catalogname || ''} text='Products by catalog' />
+          <Title title={catalogProductsArr[0].category.name || ''} text='Products by catalog' />
           <div className={style.catalog__box}>
             {
-              catalogProductsArr.length
+              catalogProductsArr
                 ? catalogProductsArr.map(product => {
                   return <Card product={product} key={product.id} />
                 })

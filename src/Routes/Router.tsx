@@ -13,7 +13,7 @@ import Contact from "../Pages/Contact/Contact";
 import ChangeAccount from "../Pages/ManageAccount/ChangeAccount";
 import Catalog from "../Pages/Catalog/Catalog";
 import Account from "../Pages/Account/Account";
-import AddProduct from "../Pages/AddProduct/AddProduct";
+
 
 export const router = createBrowserRouter([
   {
@@ -103,16 +103,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Account />
-      }
-    ]
-  },
-  {
-    path: Path.addProduct,
-    element: <PrivateRouter />,
-    children: [
-      {
-        index: true,
-        element: <AddProduct />
       }
     ]
   },

@@ -11,8 +11,13 @@ import { changeCart } from '../../Redux/Products'
 import { IProducts } from '../../Types/ReduxStore'
 import { useDelCartMutation } from '../../Services/CartMutation'
 import { TbGardenCartOff } from "react-icons/tb";
+import Loading from '../../Components/Loaders/Loading'
 
 const Cart = () => {
+  const [isCartEmpty, setIsCartEmpty] = useState(false)
+  const [active, setActive] = useState<boolean>(false)
+  const [isAnsewYes, setIsAnsewYes] = useState<boolean>(false)
+
   const { data } = getProductsCart()
 
   const cartArr = useSelector((state: { products: IProducts }) => state.products.cart)
@@ -22,8 +27,6 @@ const Cart = () => {
   const useDelCart = useDelCartMutation()
   const navigate = useNavigate()
 
-  const [active, setActive] = useState<boolean>(false)
-  const [isAnsewYes, setIsAnsewYes] = useState<boolean>(false)
 
   useEffect(() => {
     if (data?.data) {
@@ -33,8 +36,12 @@ const Cart = () => {
       useDelCart.mutateAsync()
       setActive(false)
     }
-
-  }, [data, isAnsewYes])
+    if (!isCartEmpty) {
+      setTimeout(() => {
+        setIsCartEmpty(true)
+      }, 1500);
+    }
+  }, [data, isAnsewYes, cartArr])
 
   function delAllProducts() {
     setActive(true)
@@ -100,11 +107,12 @@ const Cart = () => {
                 </div>
               </section>
             </>
-            :
-            <section className={style.empty}>
-              <h1 className={style.title}>Cart is empty</h1>
-              <span className={style.icon}><TbGardenCartOff /></span>
-            </section>
+            : isCartEmpty
+              ? <section className={style.empty}>
+                <h1 className={style.title}>Cart is empty</h1>
+                <span className={style.icon}><TbGardenCartOff /></span>
+              </section>
+              : <Loading />
         }
       </MainLayout>
     </>

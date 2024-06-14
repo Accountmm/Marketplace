@@ -6,6 +6,7 @@ import Loading from "../../Components/Loaders/Loading";
 import { IProduct } from "../../Types/ProductsType";
 import { car, delivry } from "../../Utils/Reexprot";
 import RelatedProducts from "./RelatedProducts";
+import Comments from "./Comments";
 
 const Product = () => {
   const { slug } = useParams()
@@ -53,7 +54,10 @@ const Product = () => {
             </div>
 
           </div>
-          <RelatedProducts category={product.category.name} />
+
+          <Comments slug={slug || ''} />
+
+          <RelatedProducts category={product.category.id} />
         </div>
       </section>
     </MainLayout>

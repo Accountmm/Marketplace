@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import api from "./Api"
 interface IParams {
-  sort: string
+  sort?: string
+  catalog?: number | string
 }
-const getSortProducts = ({ sort }: IParams) => {
+const getSortProducts = ({ sort, catalog }: IParams) => {
   return useQuery({
-    queryKey: ['sort_products', sort],
+    queryKey: ['sort_products', sort, catalog],
     queryFn: () => {
-      return api.get(`shop/products/?ordering=${sort}`)
+      return api.get(`shop/products/?${catalog && `category_id=${catalog}`}&${sort && `ordering=${sort}`}`)
     }
   })
 }

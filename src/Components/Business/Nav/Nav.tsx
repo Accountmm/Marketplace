@@ -48,6 +48,9 @@ const Nav = () => {
     e.preventDefault()
     navigate(Path.products)
     dispatch(changeSearchValue(searchValue))
+    setSearchValue('')
+    console.log(searchValue);
+
   }
 
   return (

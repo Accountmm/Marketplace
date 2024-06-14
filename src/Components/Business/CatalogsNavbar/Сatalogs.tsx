@@ -6,14 +6,14 @@ import CatalogLoader from '../../Loaders/CatalogLoader';
 const Catalogs = () => {
   const { data } = getCatalogs()
   const catalogsArr: ICatalog[] = data?.data
-  const loader = [...new Array(7)].map((_, i) => <CatalogLoader key={i} />)
+  const loader = [...new Array(10)].map((_, i) => <CatalogLoader key={i} />)
 
   return (
     <ul className={style.catalogs}>
       {
         catalogsArr
           ? catalogsArr.map(el => (
-            <Link key={el.id} to={`/catalog/${el.name.toLowerCase()}`} className={style.catalog}>{el.name}</Link>
+            <Link key={el.id} to={`/catalog/${el.id}`} className={style.catalog}>{el.name}</Link>
           ))
           : loader
       }

@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import style from './Card.module.scss'
 import { IProduct } from '../../../Types/ProductsType'
-import { CiHeart } from 'react-icons/ci'
 import { IAddCart, useAddCartMuation } from '../../../Services/CartMutation';
 import getProductsCart from '../../../Services/getCart';
 import { useDispatch } from 'react-redux';
@@ -22,6 +21,8 @@ const Card: FC<IParams> = ({ product, fn }) => {
 
   const navgate = useNavigate()
   const addToCartFn = (data: IAddCart) => {
+    console.log(data);
+
     usemutationAddProdutcs.mutateAsync(data)
     dispathch(changeCart(obj.data?.data))
   }
@@ -35,7 +36,6 @@ const Card: FC<IParams> = ({ product, fn }) => {
       </div>
       <p className={style.discount}>{product.discount}%</p>
       <div className={style.btns}>
-        <button className={style.btn}><CiHeart /></button>
         <button onClick={() => navgate(`/product/${product.slug.toLocaleLowerCase()}`)} className={style.btn}><IoEyeOutline /></button>
       </div>
       <div className={style.info}>
