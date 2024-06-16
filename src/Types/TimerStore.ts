@@ -1,0 +1,3 @@
+interface ITimerStore {
+  time: string
+}

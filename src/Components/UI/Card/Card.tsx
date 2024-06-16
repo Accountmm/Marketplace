@@ -7,11 +7,13 @@ import { useDispatch } from 'react-redux';
 import { changeCart } from '../../../Redux/Products';
 import { useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
+import { convertPrice } from '../../../Utils/ConvertPrice';
 
 interface IParams {
   product: IProduct
   fn?: (data: IAddCart) => void
 }
+
 const Card: FC<IParams> = ({ product, fn }) => {
   const dispathch = useDispatch()
 
@@ -21,12 +23,11 @@ const Card: FC<IParams> = ({ product, fn }) => {
 
   const navgate = useNavigate()
   const addToCartFn = (data: IAddCart) => {
-    console.log(data);
-
     usemutationAddProdutcs.mutateAsync(data)
     dispathch(changeCart(obj.data?.data))
   }
   const actualPrice = Math.round(+product.price - +product.price / 100 * product.discount)
+
   return (
     <div className={style.card} onClick={() => {
       fn ? fn({ product: product.id || 0 }) : false
@@ -41,9 +42,8 @@ const Card: FC<IParams> = ({ product, fn }) => {
       <div className={style.info}>
         <h3 className={style.title}>{product.name}</h3>
         <span className={style.price}>{actualPrice}</span>
-        <span className={style.price}>{product.price}</span>
+        <span className={style.price}>${convertPrice(product.price)}</span>
       </div>
-
     </div>
   )
 }

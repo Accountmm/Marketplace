@@ -1,51 +1,59 @@
 import { useEffect, useState } from 'react'
 import style from './Timer.module.scss'
 import { Divider } from '../../../Utils/Reexprot';
+import { useSelector } from 'react-redux';
 
 const Timer = () => {
+  // const timer = useSelector((state: { timer: ITimerStore }) => state.timer.time)
+
+  // const timeArr = timer.split(':')
+
   const [remainingDays, setRemainingDays] = useState<number>(1);
   const [remainingHours, setRemainingHours] = useState<number>(0);
   const [remainingMinutes, setRemainingMinutes] = useState<number>(0);
   const [remainingSeconds, setRemainingSeconds] = useState<number>(0);
 
+  // useEffect(() => {
+  //   if (timeArr) {
+  //     setRemainingDays(Number(timeArr[0]) || 0);
+  //     setRemainingHours(Number(timeArr[1]) || 0);
+  //     setRemainingMinutes(Number(timeArr[2]) || 0);
+  //     setRemainingSeconds(Number(timeArr[3]) || 0);
+  //   }
+  // }, [timeArr]);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      if (remainingSeconds > 0) {
-        setRemainingSeconds(remainingSeconds - 1)
-      } else if (remainingSeconds === 0 && remainingHours === 0 && remainingMinutes === 0) {
-        setRemainingDays(remainingDays - 1)
-        setRemainingHours(59)
-        setRemainingMinutes(59)
-        setRemainingSeconds(59)
-      } else if (remainingMinutes === 0 && remainingSeconds === 0 && remainingHours > 0) {
-        setRemainingHours(remainingHours - 1)
-        setRemainingMinutes(59)
-        setRemainingSeconds(59)
-      } else if (remainingSeconds === 0) {
-        if (remainingMinutes !== 0) {
-          setRemainingMinutes(remainingMinutes - 1)
-          setRemainingSeconds(59)
-        } else {
-          if (remainingHours !== 0) {
-            setRemainingMinutes(59)
-            setRemainingHours(remainingHours - 1)
-          } else {
-            if (remainingDays !== 0) {
-              setRemainingDays(remainingDays - 1)
-              setRemainingHours(59)
-            } else {
-              clearInterval(interval)
-            }
-          }
+      setRemainingSeconds((prevSeconds) => {
+        if (prevSeconds > 0) return prevSeconds - 1;
+
+        if (remainingMinutes > 0) {
+          setRemainingMinutes((prevMinutes) => prevMinutes - 1);
+          return 59;
         }
-      }
-      if (remainingDays <= 0 && remainingHours <= 0 && remainingMinutes <= 0 && remainingSeconds <= 0) {
-        clearInterval(interval)
-      }
+
+        if (remainingHours > 0) {
+          setRemainingHours((prevHours) => prevHours - 1);
+          setRemainingMinutes(59);
+          return 59;
+        }
+
+        if (remainingDays > 0) {
+          setRemainingDays((prevDays) => prevDays - 1);
+          setRemainingHours(23);
+          setRemainingMinutes(59);
+          return 59;
+        }
+
+        clearInterval(interval);
+        return 0;
+      });
     }, 1000);
 
     return () => clearInterval(interval);
   }, [remainingSeconds, remainingMinutes, remainingHours, remainingDays]);
+
+
 
 
   return (

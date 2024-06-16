@@ -6,7 +6,7 @@ export interface IProduct {
   id?: number
   long_description: string
   name: string
-  price: string | number
+  price: string
   quantity: number
   short_description: string
   slug: string
