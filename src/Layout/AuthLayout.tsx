@@ -11,7 +11,7 @@ const RegisterLayout: FC<IParams> = ({ children }) => {
       <Nav />
       <header>
         <section className='page auth'>
-          <img className='auth__img' src={registerImg} alt="" />
+          <img className='auth__img' src={registerImg} alt="" fetchPriority='high' />
           {children}
         </section>
       </header>
