@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import style from './Timer.module.scss'
 import { Divider } from '../../../Utils/Reexprot';
-import { useSelector } from 'react-redux';
 
 const Timer = () => {
   // const timer = useSelector((state: { timer: ITimerStore }) => state.timer.time)
